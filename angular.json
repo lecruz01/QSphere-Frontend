@@ -27,7 +27,21 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              {
+                "input": "src/assets/",
+                "glob": "**/*.min.js",
+                "output": "/"
+              },
+              {
+                "input": "src/assets/",
+                "glob": "**/*.onnx",
+                "output": "/"
+              },
+              {
+                "input": "src/assets/",
+                "glob": "**/*.wasm",
+                "output": "/"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -97,5 +111,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "b751c3d0-38fa-4446-a2c5-764dc1102eaa"
   }
 }

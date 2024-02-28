@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { VadService } from './services/vad/vad-service.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,10 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = 'personal-assistant-gpt';
+export class AppComponent implements OnInit{
+  constructor(private vadService: VadService) { }
+
+  ngOnInit(): void {
+    this.vadService.startVAD();
+  }
 }
