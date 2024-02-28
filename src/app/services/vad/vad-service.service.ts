@@ -23,7 +23,7 @@ export class VadService {
       onSpeechStart: () => {
         console.log("Speech started!");
       },
-      onSpeechEnd: (audio) => {
+      onSpeechEnd: (audio: any) => {
         this.onSpeechEndCB(audio);
       }
     });
@@ -33,16 +33,13 @@ export class VadService {
 
   async onSpeechEndCB(audio: Float32Array) {
     console.log('Speech ended');
-    // Convertir Float32Array a un formato adecuado para WebSocket, por ejemplo, Blob o ArrayBuffer
     const audioBlob = new Blob([audio], { type: 'audio/float32' });
   
     try {
-      // Asegúrate de que el servicio WebSocket esté listo y conectado antes de enviar
       if (this.websocketService.socket.readyState === WebSocket.OPEN) {
         this.websocketService.socket.send(audioBlob);
       } else {
         console.error('WebSocket is not open.');
-        // Podrías intentar reconectar o manejar este estado adecuadamente
       }
     } catch (error) {
       console.error('Error sending audio over WebSocket:', error);
